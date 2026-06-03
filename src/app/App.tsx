@@ -1,20 +1,13 @@
+import { supabase } from '../supabase';
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, animate, useInView } from 'motion/react';
-<<<<<<< HEAD
 import { ArrowUpRight, Play, Star, ChevronRight, Menu, X, Instagram, Twitter, Linkedin, MoveRight, Quote, Upload, CheckCircle2 } from 'lucide-react';
-=======
-import { ArrowUpRight, Play, Star, ChevronRight, Menu, X, Instagram, Twitter, Linkedin, MoveRight, Quote, MessageCircle } from 'lucide-react';
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 import chateImg from "../imports/ChatGPT_Image_Apr_15__2026__11_16_26_PM.png";
 import heavenImg from "../imports/Gemini_Generated_Image_icouxzicouxzicou.png";
-<<<<<<< HEAD
 import ashokImg from "../imports/ChatGPT_Image_Apr_27__2026__10_11_29_PM.png";
-=======
-import ashokImg from "../imports/ChatGPT_Image_Apr_25__2026__07_16_00_PM.png";
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
 import sairamImg from "../imports/Find_Your_Wild__Bring_Earth_s_Calm_Home_.jpeg";
 
 import chateLogo from "../imports/ChatGPT_Image_May_25__2026__04_55_08_PM.png";
@@ -488,11 +481,7 @@ function Results({ onNavigate }: { onNavigate?: (page: string) => void }) {
 }
 
 function Testimonials() {
-<<<<<<< HEAD
   const defaultTestimonials = [
-=======
-  const testimonials = [
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
     {
       name: "Chate Group of Education",
       role: "Client",
@@ -519,7 +508,6 @@ function Testimonials() {
     }
   ];
 
-<<<<<<< HEAD
   const [reviews, setReviews] = useState(defaultTestimonials);
   const [clientName, setClientName] = useState('');
   const [businessName, setBusinessName] = useState('');
@@ -595,10 +583,6 @@ function Testimonials() {
 
   return (
     <section ref={sectionRef} className="py-32 bg-background overflow-hidden relative">
-=======
-  return (
-    <section className="py-32 bg-background overflow-hidden relative">
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
       <div className="text-center mb-20 px-6">
         <h2 className="text-4xl md:text-6xl font-heading font-medium tracking-tight mb-6">Client Voices</h2>
       </div>
@@ -609,11 +593,7 @@ function Testimonials() {
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
         <div className="flex w-max animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
-<<<<<<< HEAD
           {[...reviews, ...reviews].map((t: any, i) => (
-=======
-          {[...testimonials, ...testimonials].map((t, i) => (
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
             <div 
               key={i} 
               className="w-[350px] md:w-[450px] mx-4 bg-white border border-primary/5 shadow-lg shadow-primary/5 rounded-[40px] rounded-bl-sm p-8 md:p-10 flex-shrink-0"
@@ -621,19 +601,11 @@ function Testimonials() {
               <Quote className="w-10 h-10 text-primary/10 mb-6" />
               <p className="text-lg md:text-xl font-medium leading-relaxed mb-8">"{t.text}"</p>
               <div className="flex items-center gap-4">
-<<<<<<< HEAD
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border border-[#EAEAEA] shadow-sm overflow-hidden ${t.isCustom ? 'bg-white p-0' : 'bg-[#FFFFFF] p-2.5'}`}>
                   <img 
                     src={t.image} 
                     alt={t.name} 
                     className={`w-full h-full ${t.isCustom ? 'object-cover' : 'object-contain'}`} 
-=======
-                <div className="w-12 h-12 rounded-full bg-[#FFFFFF] flex items-center justify-center p-2.5 shrink-0 border border-[#EAEAEA] shadow-sm overflow-hidden">
-                  <img 
-                    src={t.image} 
-                    alt={t.name} 
-                    className="w-full h-full object-contain" 
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                   />
                 </div>
                 <div>
@@ -645,7 +617,6 @@ function Testimonials() {
           ))}
         </div>
       </div>
-<<<<<<< HEAD
 
       {/* Leave a Review Form */}
       <div className="max-w-2xl mx-auto mt-24 px-6 relative z-20">
@@ -751,8 +722,6 @@ function Testimonials() {
           )}
         </div>
       </div>
-=======
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
     </section>
   );
 }
@@ -862,8 +831,6 @@ function About({ isStandalone, onNavigate }: { isStandalone?: boolean, onNavigat
   );
 }
 
-<<<<<<< HEAD
-=======
 const WA_NUMBER = "919356601391";
 
 function sendToWhatsApp(message: string) {
@@ -895,26 +862,17 @@ function WhatsAppFAB() {
   );
 }
 
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
 function Contact({ onNavigate, isStandalone }: { onNavigate: (page: string) => void, isStandalone?: boolean }) {
   const [services, setServices] = useState<string[]>([]);
   const [businessType, setBusinessType] = useState<string>("");
-
-<<<<<<< HEAD
-=======
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const brandRef = useRef<HTMLInputElement>(null);
   const detailsRef = useRef<HTMLTextAreaElement>(null);
-
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
   const toggleService = (s: string) => {
     setServices(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]);
   };
-
-<<<<<<< HEAD
-=======
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
     const name = nameRef.current?.value || "";
@@ -940,8 +898,6 @@ _Submitted via Elvera Media website_`;
     sendToWhatsApp(msg);
     onNavigate('thank-you');
   };
-
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
   return (
     <section id="contact" className={cn("bg-background relative z-20", isStandalone ? "pt-32 pb-20 min-h-screen" : "py-32")}>
       <div className="container mx-auto px-6 md:px-12">
@@ -978,11 +934,7 @@ _Submitted via Elvera Media website_`;
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground mb-1">Instagram</div>
-<<<<<<< HEAD
                   <a href="https://www.instagram.com/elveramedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary transition-colors">@elveramedia</a>
-=======
-                  <a href="https://instagram.com/elveramedia" target="_blank" className="font-medium hover:text-primary transition-colors">@elveramedia</a>
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                 </div>
               </div>
             </div>
@@ -998,17 +950,10 @@ _Submitted via Elvera Media website_`;
                 Your Details
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-<<<<<<< HEAD
-                <input type="text" placeholder="Full Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
-                <input type="tel" placeholder="Phone Number" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
-                <input type="email" placeholder="Email Address" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
-                <input type="text" placeholder="Business / Brand Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
-=======
                 <input ref={nameRef} type="text" placeholder="Full Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
                 <input ref={phoneRef} type="tel" placeholder="Phone Number" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
                 <input ref={emailRef} type="email" placeholder="Email Address" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
                 <input ref={brandRef} type="text" placeholder="Business / Brand Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
               </div>
             </motion.div>
 
@@ -1069,10 +1014,7 @@ _Submitted via Elvera Media website_`;
                 Project Details
               </h3>
               <textarea 
-<<<<<<< HEAD
-=======
                 ref={detailsRef}
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                 placeholder="Tell us about your business, goals, and how we can help you grow." 
                 rows={5} 
                 className="w-full bg-background border border-primary/5 rounded-[24px] px-6 py-5 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none"
@@ -1082,11 +1024,7 @@ _Submitted via Elvera Media website_`;
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.6 }}>
               <Magnetic>
                 <button 
-<<<<<<< HEAD
-                  onClick={(e) => { e.preventDefault(); onNavigate('thank-you'); }} 
-=======
                   onClick={handleSubmit} 
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                   className="group w-full md:w-auto rounded-full bg-primary text-primary-foreground px-8 py-4 text-sm md:text-base font-medium flex items-center justify-center gap-3 hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-primary/10 mt-4"
                 >
                   Submit Form
@@ -1137,11 +1075,7 @@ function Footer({ onNavigate }: { onNavigate?: (page: string) => void }) {
             </div>
             
             <div className="flex gap-4">
-<<<<<<< HEAD
               <a href="https://www.instagram.com/elveramedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="rounded-full bg-white/10 flex items-center gap-3 px-6 py-3 hover:bg-white/20 transition-colors">
-=======
-              <a href="#" className="rounded-full bg-white/10 flex items-center gap-3 px-6 py-3 hover:bg-white/20 transition-colors">
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                 <Instagram className="w-5 h-5" />
                 <span className="font-medium text-sm">@elveramedia</span>
               </a>
@@ -1167,8 +1101,6 @@ function Footer({ onNavigate }: { onNavigate?: (page: string) => void }) {
 }
 
 function ProjectOnboarding({ onNavigate }: { onNavigate: (page: string) => void }) {
-<<<<<<< HEAD
-=======
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -1198,7 +1130,6 @@ _Submitted via Elvera Media website_`;
     onNavigate('thank-you');
   };
 
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
   return (
     <div className="min-h-screen bg-background pt-32 pb-20 px-6 flex flex-col justify-center">
       <div className="container mx-auto max-w-4xl relative z-10">
@@ -1218,36 +1149,20 @@ _Submitted via Elvera Media website_`;
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium ml-2 text-primary/70">First Name</label>
-<<<<<<< HEAD
-                <input type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium ml-2 text-primary/70">Last Name</label>
-                <input type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
-=======
                 <input ref={firstNameRef} type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium ml-2 text-primary/70">Last Name</label>
                 <input ref={lastNameRef} type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Company Email</label>
-<<<<<<< HEAD
-              <input type="email" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium ml-2 text-primary/70">Estimated Budget</label>
-              <select className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all appearance-none cursor-pointer">
-=======
               <input ref={emailRef} type="email" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Estimated Budget</label>
               <select ref={budgetRef} className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all appearance-none cursor-pointer">
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                 <option>Less than ₹5 Lakhs</option>
                 <option>₹5L - ₹15L</option>
                 <option>₹15L - ₹50L</option>
@@ -1256,20 +1171,12 @@ _Submitted via Elvera Media website_`;
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Project Vision</label>
-<<<<<<< HEAD
-              <textarea rows={4} placeholder="Describe what success looks like for this project." className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none" />
-=======
               <textarea ref={visionRef} rows={4} placeholder="Describe what success looks like for this project." className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none" />
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
             </div>
             
             <div className="pt-4">
               <Magnetic>
-<<<<<<< HEAD
-                <button onClick={(e) => { e.preventDefault(); onNavigate('thank-you'); }} className="group rounded-full bg-primary text-primary-foreground px-8 py-4 font-medium flex items-center gap-3 hover:scale-[1.02] transition-transform duration-300 w-fit shadow-xl shadow-primary/10">
-=======
                 <button onClick={handleSubmit} className="group rounded-full bg-primary text-primary-foreground px-8 py-4 font-medium flex items-center gap-3 hover:scale-[1.02] transition-transform duration-300 w-fit shadow-xl shadow-primary/10">
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                   Submit Request 
                   <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -1336,10 +1243,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground">
       <CursorGlow />
-<<<<<<< HEAD
-=======
       <WhatsAppFAB />
->>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
       <Navbar onNavigate={navigateTo} />
       
       <AnimatePresence mode="wait">
