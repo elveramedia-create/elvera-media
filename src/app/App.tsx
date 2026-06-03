@@ -563,15 +563,14 @@ const loadReviews = async () => {
     setIsSubmitting(true);
     
     const newReview = {
-      name: clientName,
-      role: businessName,
-      image: profilePic,
-      text: reviewMessage,
-      isCustom: true
-    };
+  name: clientName,
+  role: businessName,
+  image: profilePic,
+  text: reviewMessage,
+  isCustom: true
+};
 
-    setTimeout(() => {
-      const { error } = await supabase
+const { error } = await supabase
   .from('reviews')
   .insert([
     {
@@ -590,19 +589,27 @@ if (error) {
   return;
 }
 
-      setClientName('');
-      setBusinessName('');
-      setReviewMessage('');
-      setProfilePic(null);
-      if (fileInputRef.current) fileInputRef.current.value = '';
-      setIsSubmitting(false);
-      setShowSuccess(true);
-      
-      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
-      setTimeout(() => setShowSuccess(false), 4000);
-    }, 800);
-  };
+setTimeout(() => {
+  setClientName('');
+  setBusinessName('');
+  setReviewMessage('');
+  setProfilePic(null);
+
+  if (fileInputRef.current) {
+    fileInputRef.current.value = '';
+  }
+
+  setIsSubmitting(false);
+  setShowSuccess(true);
+
+  sectionRef.current?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+
+  setTimeout(() => setShowSuccess(false), 4000);
+
+}, 800);
 
   return (
     <section ref={sectionRef} className="py-32 bg-background overflow-hidden relative">
