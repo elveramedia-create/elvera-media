@@ -610,7 +610,7 @@ setTimeout(() => {
   setTimeout(() => setShowSuccess(false), 4000);
 
 }, 800);
-
+  };
   return (
     <section ref={sectionRef} className="py-32 bg-background overflow-hidden relative">
       <div className="text-center mb-20 px-6">
