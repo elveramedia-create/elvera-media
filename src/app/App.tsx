@@ -1,12 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, animate, useInView } from 'motion/react';
+<<<<<<< HEAD
 import { ArrowUpRight, Play, Star, ChevronRight, Menu, X, Instagram, Twitter, Linkedin, MoveRight, Quote, Upload, CheckCircle2 } from 'lucide-react';
+=======
+import { ArrowUpRight, Play, Star, ChevronRight, Menu, X, Instagram, Twitter, Linkedin, MoveRight, Quote, MessageCircle } from 'lucide-react';
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 import chateImg from "../imports/ChatGPT_Image_Apr_15__2026__11_16_26_PM.png";
 import heavenImg from "../imports/Gemini_Generated_Image_icouxzicouxzicou.png";
+<<<<<<< HEAD
 import ashokImg from "../imports/ChatGPT_Image_Apr_27__2026__10_11_29_PM.png";
+=======
+import ashokImg from "../imports/ChatGPT_Image_Apr_25__2026__07_16_00_PM.png";
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
 import sairamImg from "../imports/Find_Your_Wild__Bring_Earth_s_Calm_Home_.jpeg";
 
 import chateLogo from "../imports/ChatGPT_Image_May_25__2026__04_55_08_PM.png";
@@ -480,7 +488,11 @@ function Results({ onNavigate }: { onNavigate?: (page: string) => void }) {
 }
 
 function Testimonials() {
+<<<<<<< HEAD
   const defaultTestimonials = [
+=======
+  const testimonials = [
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
     {
       name: "Chate Group of Education",
       role: "Client",
@@ -507,6 +519,7 @@ function Testimonials() {
     }
   ];
 
+<<<<<<< HEAD
   const [reviews, setReviews] = useState(defaultTestimonials);
   const [clientName, setClientName] = useState('');
   const [businessName, setBusinessName] = useState('');
@@ -582,6 +595,10 @@ function Testimonials() {
 
   return (
     <section ref={sectionRef} className="py-32 bg-background overflow-hidden relative">
+=======
+  return (
+    <section className="py-32 bg-background overflow-hidden relative">
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
       <div className="text-center mb-20 px-6">
         <h2 className="text-4xl md:text-6xl font-heading font-medium tracking-tight mb-6">Client Voices</h2>
       </div>
@@ -592,7 +609,11 @@ function Testimonials() {
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
 
         <div className="flex w-max animate-[scroll_30s_linear_infinite] hover:[animation-play-state:paused]">
+<<<<<<< HEAD
           {[...reviews, ...reviews].map((t: any, i) => (
+=======
+          {[...testimonials, ...testimonials].map((t, i) => (
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
             <div 
               key={i} 
               className="w-[350px] md:w-[450px] mx-4 bg-white border border-primary/5 shadow-lg shadow-primary/5 rounded-[40px] rounded-bl-sm p-8 md:p-10 flex-shrink-0"
@@ -600,11 +621,19 @@ function Testimonials() {
               <Quote className="w-10 h-10 text-primary/10 mb-6" />
               <p className="text-lg md:text-xl font-medium leading-relaxed mb-8">"{t.text}"</p>
               <div className="flex items-center gap-4">
+<<<<<<< HEAD
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border border-[#EAEAEA] shadow-sm overflow-hidden ${t.isCustom ? 'bg-white p-0' : 'bg-[#FFFFFF] p-2.5'}`}>
                   <img 
                     src={t.image} 
                     alt={t.name} 
                     className={`w-full h-full ${t.isCustom ? 'object-cover' : 'object-contain'}`} 
+=======
+                <div className="w-12 h-12 rounded-full bg-[#FFFFFF] flex items-center justify-center p-2.5 shrink-0 border border-[#EAEAEA] shadow-sm overflow-hidden">
+                  <img 
+                    src={t.image} 
+                    alt={t.name} 
+                    className="w-full h-full object-contain" 
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                   />
                 </div>
                 <div>
@@ -616,6 +645,7 @@ function Testimonials() {
           ))}
         </div>
       </div>
+<<<<<<< HEAD
 
       {/* Leave a Review Form */}
       <div className="max-w-2xl mx-auto mt-24 px-6 relative z-20">
@@ -721,6 +751,8 @@ function Testimonials() {
           )}
         </div>
       </div>
+=======
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
     </section>
   );
 }
@@ -830,14 +862,86 @@ function About({ isStandalone, onNavigate }: { isStandalone?: boolean, onNavigat
   );
 }
 
+<<<<<<< HEAD
+=======
+const WA_NUMBER = "919356601391";
+
+function sendToWhatsApp(message: string) {
+  const encoded = encodeURIComponent(message);
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encoded}`, "_blank");
+}
+
+function WhatsAppFAB() {
+  return (
+    <motion.a
+      href={`https://wa.me/${WA_NUMBER}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 1.5, type: "spring", stiffness: 200, damping: 15 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      className="fixed bottom-6 right-6 z-[200] flex items-center gap-3 bg-[#25D366] text-white rounded-full shadow-[0_8px_30px_rgba(37,211,102,0.45)] px-5 py-3.5 group cursor-pointer"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 flex-shrink-0">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      <span className="text-sm font-semibold whitespace-nowrap overflow-hidden max-w-0 group-hover:max-w-[120px] transition-all duration-300 ease-in-out">
+        Chat with us
+      </span>
+    </motion.a>
+  );
+}
+
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
 function Contact({ onNavigate, isStandalone }: { onNavigate: (page: string) => void, isStandalone?: boolean }) {
   const [services, setServices] = useState<string[]>([]);
   const [businessType, setBusinessType] = useState<string>("");
 
+<<<<<<< HEAD
+=======
+  const nameRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const brandRef = useRef<HTMLInputElement>(null);
+  const detailsRef = useRef<HTMLTextAreaElement>(null);
+
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
   const toggleService = (s: string) => {
     setServices(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]);
   };
 
+<<<<<<< HEAD
+=======
+  const handleSubmit = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const name = nameRef.current?.value || "";
+    const phone = phoneRef.current?.value || "";
+    const email = emailRef.current?.value || "";
+    const brand = brandRef.current?.value || "";
+    const details = detailsRef.current?.value || "";
+
+    const msg = `🚀 *New Lead — Elvera Media*
+
+👤 *Name:* ${name || "Not provided"}
+📞 *Phone:* ${phone || "Not provided"}
+📧 *Email:* ${email || "Not provided"}
+🏢 *Business:* ${brand || "Not provided"}
+🏷️ *Business Type:* ${businessType || "Not selected"}
+🛠️ *Services:* ${services.length ? services.join(", ") : "Not selected"}
+
+💬 *Details:*
+${details || "No additional details"}
+
+_Submitted via Elvera Media website_`;
+
+    sendToWhatsApp(msg);
+    onNavigate('thank-you');
+  };
+
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
   return (
     <section id="contact" className={cn("bg-background relative z-20", isStandalone ? "pt-32 pb-20 min-h-screen" : "py-32")}>
       <div className="container mx-auto px-6 md:px-12">
@@ -874,7 +978,11 @@ function Contact({ onNavigate, isStandalone }: { onNavigate: (page: string) => v
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground mb-1">Instagram</div>
+<<<<<<< HEAD
                   <a href="https://www.instagram.com/elveramedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary transition-colors">@elveramedia</a>
+=======
+                  <a href="https://instagram.com/elveramedia" target="_blank" className="font-medium hover:text-primary transition-colors">@elveramedia</a>
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                 </div>
               </div>
             </div>
@@ -890,10 +998,17 @@ function Contact({ onNavigate, isStandalone }: { onNavigate: (page: string) => v
                 Your Details
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+<<<<<<< HEAD
                 <input type="text" placeholder="Full Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
                 <input type="tel" placeholder="Phone Number" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
                 <input type="email" placeholder="Email Address" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
                 <input type="text" placeholder="Business / Brand Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
+=======
+                <input ref={nameRef} type="text" placeholder="Full Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+                <input ref={phoneRef} type="tel" placeholder="Phone Number" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+                <input ref={emailRef} type="email" placeholder="Email Address" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
+                <input ref={brandRef} type="text" placeholder="Business / Brand Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
               </div>
             </motion.div>
 
@@ -954,6 +1069,10 @@ function Contact({ onNavigate, isStandalone }: { onNavigate: (page: string) => v
                 Project Details
               </h3>
               <textarea 
+<<<<<<< HEAD
+=======
+                ref={detailsRef}
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                 placeholder="Tell us about your business, goals, and how we can help you grow." 
                 rows={5} 
                 className="w-full bg-background border border-primary/5 rounded-[24px] px-6 py-5 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none"
@@ -963,7 +1082,11 @@ function Contact({ onNavigate, isStandalone }: { onNavigate: (page: string) => v
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.6 }}>
               <Magnetic>
                 <button 
+<<<<<<< HEAD
                   onClick={(e) => { e.preventDefault(); onNavigate('thank-you'); }} 
+=======
+                  onClick={handleSubmit} 
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                   className="group w-full md:w-auto rounded-full bg-primary text-primary-foreground px-8 py-4 text-sm md:text-base font-medium flex items-center justify-center gap-3 hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-primary/10 mt-4"
                 >
                   Submit Form
@@ -1014,7 +1137,11 @@ function Footer({ onNavigate }: { onNavigate?: (page: string) => void }) {
             </div>
             
             <div className="flex gap-4">
+<<<<<<< HEAD
               <a href="https://www.instagram.com/elveramedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="rounded-full bg-white/10 flex items-center gap-3 px-6 py-3 hover:bg-white/20 transition-colors">
+=======
+              <a href="#" className="rounded-full bg-white/10 flex items-center gap-3 px-6 py-3 hover:bg-white/20 transition-colors">
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                 <Instagram className="w-5 h-5" />
                 <span className="font-medium text-sm">@elveramedia</span>
               </a>
@@ -1040,6 +1167,38 @@ function Footer({ onNavigate }: { onNavigate?: (page: string) => void }) {
 }
 
 function ProjectOnboarding({ onNavigate }: { onNavigate: (page: string) => void }) {
+<<<<<<< HEAD
+=======
+  const firstNameRef = useRef<HTMLInputElement>(null);
+  const lastNameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const budgetRef = useRef<HTMLSelectElement>(null);
+  const visionRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleSubmit = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const firstName = firstNameRef.current?.value || "";
+    const lastName = lastNameRef.current?.value || "";
+    const email = emailRef.current?.value || "";
+    const budget = budgetRef.current?.value || "";
+    const vision = visionRef.current?.value || "";
+
+    const msg = `🚀 *New Project Request — Elvera Media*
+
+👤 *Name:* ${firstName} ${lastName}
+📧 *Email:* ${email || "Not provided"}
+💰 *Budget:* ${budget}
+
+🎯 *Project Vision:*
+${vision || "No details provided"}
+
+_Submitted via Elvera Media website_`;
+
+    sendToWhatsApp(msg);
+    onNavigate('thank-you');
+  };
+
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
   return (
     <div className="min-h-screen bg-background pt-32 pb-20 px-6 flex flex-col justify-center">
       <div className="container mx-auto max-w-4xl relative z-10">
@@ -1059,20 +1218,36 @@ function ProjectOnboarding({ onNavigate }: { onNavigate: (page: string) => void 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium ml-2 text-primary/70">First Name</label>
+<<<<<<< HEAD
                 <input type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium ml-2 text-primary/70">Last Name</label>
                 <input type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+=======
+                <input ref={firstNameRef} type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium ml-2 text-primary/70">Last Name</label>
+                <input ref={lastNameRef} type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Company Email</label>
+<<<<<<< HEAD
               <input type="email" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Estimated Budget</label>
               <select className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all appearance-none cursor-pointer">
+=======
+              <input ref={emailRef} type="email" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium ml-2 text-primary/70">Estimated Budget</label>
+              <select ref={budgetRef} className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all appearance-none cursor-pointer">
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                 <option>Less than ₹5 Lakhs</option>
                 <option>₹5L - ₹15L</option>
                 <option>₹15L - ₹50L</option>
@@ -1081,12 +1256,20 @@ function ProjectOnboarding({ onNavigate }: { onNavigate: (page: string) => void 
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Project Vision</label>
+<<<<<<< HEAD
               <textarea rows={4} placeholder="Describe what success looks like for this project." className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none" />
+=======
+              <textarea ref={visionRef} rows={4} placeholder="Describe what success looks like for this project." className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none" />
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
             </div>
             
             <div className="pt-4">
               <Magnetic>
+<<<<<<< HEAD
                 <button onClick={(e) => { e.preventDefault(); onNavigate('thank-you'); }} className="group rounded-full bg-primary text-primary-foreground px-8 py-4 font-medium flex items-center gap-3 hover:scale-[1.02] transition-transform duration-300 w-fit shadow-xl shadow-primary/10">
+=======
+                <button onClick={handleSubmit} className="group rounded-full bg-primary text-primary-foreground px-8 py-4 font-medium flex items-center gap-3 hover:scale-[1.02] transition-transform duration-300 w-fit shadow-xl shadow-primary/10">
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
                   Submit Request 
                   <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -1153,6 +1336,10 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground">
       <CursorGlow />
+<<<<<<< HEAD
+=======
+      <WhatsAppFAB />
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
       <Navbar onNavigate={navigateTo} />
       
       <AnimatePresence mode="wait">

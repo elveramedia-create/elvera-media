@@ -1,1 +1,6 @@
 node_modules
+<<<<<<< HEAD
+=======
+dist
+.vercel
+>>>>>>> b0fcec2592a6e66fd396b49b1f576afc81367478
