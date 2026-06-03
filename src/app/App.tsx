@@ -519,16 +519,31 @@ function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem('elvera_reviews');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setReviews([...defaultTestimonials, ...parsed]);
-      } catch (e) {
-        console.error("Failed to load reviews:", e);
-      }
-    }
-  }, []);
+  loadReviews();
+}, []);
+
+const loadReviews = async () => {
+  const { data, error } = await supabase
+    .from('reviews')
+    .select('*')
+    .eq('approved', true)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const dbReviews = data.map((item) => ({
+    name: item.name,
+    role: item.business_name,
+    text: item.review_text,
+    image: item.profile_image,
+    isCustom: true
+  }));
+
+  setReviews([...defaultTestimonials, ...dbReviews]);
+};
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -541,7 +556,7 @@ function Testimonials() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!clientName || !businessName || !reviewMessage || !profilePic) return;
     
@@ -556,16 +571,24 @@ function Testimonials() {
     };
 
     setTimeout(() => {
-      const updated = [...reviews, newReview];
-      setReviews(updated);
-      
-      const saved = localStorage.getItem('elvera_reviews');
-      let parsedSaved = [];
-      if (saved) {
-        try { parsedSaved = JSON.parse(saved); } catch (e) {}
-      }
-      parsedSaved.push(newReview);
-      localStorage.setItem('elvera_reviews', JSON.stringify(parsedSaved));
+      const { error } = await supabase
+  .from('reviews')
+  .insert([
+    {
+      name: clientName,
+      business_name: businessName,
+      review_text: reviewMessage,
+      profile_image: profilePic,
+      approved: false
+    }
+  ]);
+
+if (error) {
+  console.error(error);
+  alert('Failed to submit review');
+  setIsSubmitting(false);
+  return;
+}
 
       setClientName('');
       setBusinessName('');
