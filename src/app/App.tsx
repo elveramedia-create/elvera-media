@@ -1,7 +1,6 @@
-import { supabase } from '../supabase';
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, animate, useInView } from 'motion/react';
-import { ArrowUpRight, Play, Star, ChevronRight, Menu, X, Instagram, Twitter, Linkedin, MoveRight, Quote, Upload, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, Play, Star, ChevronRight, Menu, X, Instagram, Twitter, Linkedin, Facebook, MoveRight, Quote, Upload, CheckCircle2, Check } from 'lucide-react';
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -17,6 +16,11 @@ import sairamLogo from "../imports/ChatGPT_Image_May_25__2026__04_53_33_PM.png";
 
 import heroLeftImg from "../imports/LOGO2.png";
 import heroRightImg from "../imports/RESULTS.png";
+import jwelleryImg from "../imports/ChatGPT_Image_Jul_10__2026__10_11_04_PM.png";
+import resortCampaignImg from "../imports/ChatGPT_Image_Mar_29__2026__10_04_17_AM.png";
+import attaChakkiImg from "../imports/photo_2026-07-19_13-35-05.jpg";
+import educationalInstituteImg from "../imports/ChatGPT_Image_Jul_19__2026__01_44_30_PM.png";
+import woodenDoorImg from "../imports/ChatGPT_Image_Jul_19__2026__01_48_07_PM.png";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -108,6 +112,7 @@ function Navbar({ onNavigate }: { onNavigate: (page: string) => void }) {
         <nav className="hidden md:flex items-center gap-8 bg-white/50 px-6 py-2.5 rounded-full border border-white/70 shadow-sm backdrop-blur-md">
           <button onClick={() => onNavigate('work')} className="text-sm font-medium hover:text-primary/60 transition-colors">Work</button>
           <button onClick={() => onNavigate('services')} className="text-sm font-medium hover:text-primary/60 transition-colors">Services</button>
+          <button onClick={() => onNavigate('packages')} className="text-sm font-medium hover:text-primary/60 transition-colors">Packages</button>
           <button onClick={() => onNavigate('about')} className="text-sm font-medium hover:text-primary/60 transition-colors">About</button>
         </nav>
         
@@ -124,25 +129,42 @@ function Navbar({ onNavigate }: { onNavigate: (page: string) => void }) {
   );
 }
 
+function SectionGrid() {
+  return (
+    <div 
+      className="absolute inset-0 z-0 pointer-events-none opacity-60" 
+      style={{ 
+        backgroundImage: 'linear-gradient(#E6E6E6 1px, transparent 1px), linear-gradient(90deg, #E6E6E6 1px, transparent 1px)', 
+        backgroundSize: '40px 40px',
+        WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+        maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+      }} 
+    />
+  );
+}
+
 function Hero({ onNavigate }: { onNavigate: (page: string) => void }) {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
   const y2 = useTransform(scrollY, [0, 1000], [0, -150]);
+  const y3 = useTransform(scrollY, [0, 1000], [0, 10]);
+  const y4 = useTransform(scrollY, [0, 1000], [0, -10]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden">
+      <SectionGrid />
       <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
         <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-neutral-200 rounded-full mix-blend-multiply filter blur-[100px] animate-blob" />
         <div className="absolute top-[30%] right-[10%] w-[400px] h-[400px] bg-neutral-300 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000" />
         <div className="absolute bottom-[-10%] left-[30%] w-[600px] h-[600px] bg-neutral-100 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 md:px-12 flex flex-col items-center text-center">
+      <div className="container relative z-30 mx-auto px-6 md:px-12 flex flex-col items-center text-center pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-primary/10 bg-white/60 backdrop-blur-md mb-10 shadow-sm"
+          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-primary/10 bg-white/60 backdrop-blur-md mb-10 shadow-sm pointer-events-auto"
         >
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <span className="text-sm font-medium">Accepting new projects</span>
@@ -170,7 +192,7 @@ function Hero({ onNavigate }: { onNavigate: (page: string) => void }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-14 flex flex-col sm:flex-row items-center gap-6"
+          className="mt-14 flex flex-col sm:flex-row items-center gap-6 pointer-events-auto"
         >
           <Magnetic>
             <button onClick={() => onNavigate('start-project')} className="rounded-full bg-primary text-primary-foreground px-8 py-4 text-base font-medium flex items-center gap-3 hover:scale-105 transition-transform duration-300 shadow-xl shadow-primary/10">
@@ -182,8 +204,62 @@ function Hero({ onNavigate }: { onNavigate: (page: string) => void }) {
 
       {/* Floating Image Elements */}
       <motion.div
+        style={{ y: y3, perspective: 1000 }}
+        className="absolute hidden lg:block left-[4%] top-[50%] z-0"
+      >
+        <motion.div
+          initial={{ opacity: 0, x: 100, rotate: -8, y: 0 }}
+          animate={{ 
+            opacity: 1, 
+            x: 0, 
+            rotate: [-8, -6, -10, -8], 
+            y: [-8, 8, -8] 
+          }}
+          transition={{ 
+            opacity: { duration: 1.4, delay: 0.6, ease: [0.16, 1, 0.3, 1] },
+            x: { duration: 1.4, delay: 0.6, ease: [0.16, 1, 0.3, 1] },
+            rotate: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.0 },
+            y: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.0 }
+          }}
+          whileHover={{ scale: 1.03, rotate: 0, rotateX: 0, rotateY: 0, rotateZ: 0 }}
+          className="relative w-[180px] h-[260px] rounded-[32px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] border border-white/50 bg-white cursor-pointer hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.2)] transition-shadow duration-250 ease-out"
+          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E")` }}
+        >
+          <img src={jwelleryImg} alt="Jewellery Campaign" className="w-full h-full object-cover scale-[1.05]" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/30 pointer-events-none mix-blend-overlay" />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        style={{ y: y4, perspective: 1000 }}
+        className="absolute hidden lg:block right-[4%] top-[55%] z-0"
+      >
+        <motion.div
+          initial={{ opacity: 0, x: -100, rotate: 10, y: 0 }}
+          animate={{ 
+            opacity: 1, 
+            x: 0, 
+            rotate: [10, 8, 12, 10], 
+            y: [8, -8, 8] 
+          }}
+          transition={{ 
+            opacity: { duration: 1.4, delay: 0.7, ease: [0.16, 1, 0.3, 1] },
+            x: { duration: 1.4, delay: 0.7, ease: [0.16, 1, 0.3, 1] },
+            rotate: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.1 },
+            y: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.1 }
+          }}
+          whileHover={{ scale: 1.03, rotate: 0, rotateX: 0, rotateY: 0, rotateZ: 0 }}
+          className="relative w-[180px] h-[260px] rounded-[32px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] border border-white/50 bg-white cursor-pointer hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.2)] transition-shadow duration-250 ease-out"
+          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E")` }}
+        >
+          <img src={resortCampaignImg} alt="Resort Campaign" className="w-full h-full object-cover scale-[1.05]" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/30 pointer-events-none mix-blend-overlay" />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
         style={{ y: y1, perspective: 1000 }}
-        className="absolute hidden lg:block left-[8%] top-[20%] z-0"
+        className="absolute hidden lg:block left-[8%] top-[20%] z-10"
       >
         <motion.div
           initial={{ opacity: 0, x: 100, rotate: 0, y: 0 }}
@@ -209,7 +285,7 @@ function Hero({ onNavigate }: { onNavigate: (page: string) => void }) {
 
       <motion.div
         style={{ y: y2, perspective: 1000 }}
-        className="absolute hidden lg:block right-[8%] top-[30%] z-0"
+        className="absolute hidden lg:block right-[8%] top-[30%] z-10"
       >
         <motion.div
           initial={{ opacity: 0, x: -100, rotate: 0, y: 0 }}
@@ -282,7 +358,8 @@ function FeaturedWork({ isStandalone, onNavigate }: { isStandalone?: boolean, on
 
   return (
     <section id="work" className={cn("bg-white relative z-20 shadow-[0_-20px_60px_-15px_rgba(17,17,17,0.05)]", isStandalone ? "py-32 min-h-screen" : "py-32 rounded-t-[60px] md:rounded-t-[100px]")}>
-      <div className="container mx-auto px-6 md:px-12">
+      <SectionGrid />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         {isStandalone && onNavigate && (
           <button onClick={() => onNavigate('home')} className="mb-12 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium">
             <ChevronRight className="w-5 h-5 rotate-180" /> Back to Home
@@ -352,16 +429,50 @@ function FeaturedWork({ isStandalone, onNavigate }: { isStandalone?: boolean, on
 }
 
 function Services({ isStandalone, onNavigate }: { isStandalone?: boolean, onNavigate?: (page: string) => void }) {
+  const [activeService, setActiveService] = useState<number | null>(null);
+
   const services = [
-    { name: "Social Media Management", delay: 0 },
-    { name: "Performance Marketing", delay: 0.1 },
-    { name: "Content Creation", delay: 0.2 },
-    { name: "Brand Strategy", delay: 0.3 }
+    { 
+      name: "Social Media Management", 
+      delay: 0,
+      description: "Manage your brand consistently across social platforms through strategic planning, content publishing, audience engagement, and monthly performance tracking.",
+      features: ["Content Planning", "Daily Posting", "Community Management", "Monthly Analytics"]
+    },
+    { 
+      name: "Performance Marketing", 
+      delay: 0.1,
+      description: "Generate qualified leads and measurable business growth through optimized Meta and Google advertising campaigns.",
+      features: ["Meta Ads", "Google Ads", "Lead Generation", "Campaign Optimization"]
+    },
+    { 
+      name: "Content Creation", 
+      delay: 0.2,
+      description: "Create premium visual content that builds trust and increases engagement across all digital platforms.",
+      features: ["Reels & Short Videos", "Graphic Design", "Product Photography", "Video Editing"]
+    },
+    { 
+      name: "Brand Strategy", 
+      delay: 0.3,
+      description: "Develop a strong and memorable brand identity with strategic positioning, messaging, and visual consistency.",
+      features: ["Brand Identity", "Logo & Visual System", "Brand Messaging", "Growth Strategy"]
+    }
   ];
+
+  const handleLearnMore = () => {
+    if (onNavigate) {
+      const contactEl = document.getElementById('contact');
+      if (contactEl) {
+        contactEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        onNavigate('lets-grow');
+      }
+    }
+  };
 
   return (
     <section id="services" className={cn("bg-background relative overflow-hidden", isStandalone ? "pt-32 pb-20 min-h-screen" : "py-32")}>
-      <div className="container mx-auto px-6 md:px-12">
+      <SectionGrid />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         {isStandalone && onNavigate && (
           <button onClick={() => onNavigate('home')} className="mb-12 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium">
             <ChevronRight className="w-5 h-5 rotate-180" /> Back to Home
@@ -374,7 +485,7 @@ function Services({ isStandalone, onNavigate }: { isStandalone?: boolean, onNavi
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+        <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-16">
           {services.map((service, i) => (
             <motion.div
               key={i}
@@ -383,22 +494,77 @@ function Services({ isStandalone, onNavigate }: { isStandalone?: boolean, onNavi
               whileHover="hover"
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: service.delay, type: "spring", bounce: 0.4 }}
-              className="group bg-white rounded-full border border-primary/5 shadow-sm px-8 py-5 md:px-10 md:py-6 flex items-center gap-3 justify-center text-center cursor-pointer hover:border-primary/20 hover:shadow-lg transition-all duration-300"
+              onClick={() => setActiveService(activeService === i ? null : i)}
+              className={cn(
+                "group rounded-full border shadow-sm px-8 py-5 md:px-10 md:py-6 flex items-center gap-3 justify-center text-center cursor-pointer transition-all duration-300",
+                activeService === i 
+                  ? "bg-[#111111] text-white border-[#111111] shadow-[0_4px_20px_rgba(17,17,17,0.15)] scale-[0.98]" 
+                  : "bg-white text-black border-primary/5 hover:border-primary/20 hover:shadow-lg hover:-translate-y-1"
+              )}
             >
-              <h3 className="text-lg md:text-xl font-medium">{service.name}</h3>
+              <h3 className="text-lg md:text-xl font-medium relative z-10">{service.name}</h3>
               <motion.div
                 variants={{
                   hover: { x: 0, opacity: 1, width: "auto", display: "block" }
                 }}
+                animate={activeService === i ? { x: 0, opacity: 1, width: "auto", display: "block" } : {}}
                 initial={{ x: -10, opacity: 0, width: 0, display: "none" }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="overflow-hidden flex items-center justify-center text-primary"
+                className={cn("overflow-hidden flex items-center justify-center", activeService === i ? "text-white" : "text-primary")}
               >
                 <ArrowUpRight className="w-5 h-5" />
               </motion.div>
             </motion.div>
           ))}
         </div>
+
+      <WhatsAppFloatingButton />
+      
+      <AnimatePresence mode="wait">
+          {activeService !== null && (
+            <motion.div
+              key={activeService}
+              initial={{ opacity: 0, y: 20, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: "auto" }}
+              exit={{ opacity: 0, y: -20, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="overflow-hidden"
+            >
+              <div className="bg-white rounded-[40px] p-8 md:p-12 lg:p-16 border border-primary/5 shadow-sm max-w-4xl mx-auto flex flex-col items-center text-center">
+                <div className="flex-1 w-full">
+                  <h3 className="text-3xl md:text-4xl font-heading font-medium mb-6">
+                    {services[activeService].name}
+                  </h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-2xl mx-auto">
+                    {services[activeService].description}
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12 max-w-2xl mx-auto text-left">
+                    {services[activeService].features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-4 bg-background/50 rounded-2xl p-4 border border-primary/5">
+                        <div className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary shrink-0">
+                          <CheckCircle2 className="w-4 h-4" />
+                        </div>
+                        <span className="font-medium text-primary/80">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-center">
+                    <Magnetic>
+                      <button 
+                        onClick={handleLearnMore}
+                        className="rounded-full bg-primary text-primary-foreground px-8 py-4 font-medium flex items-center gap-3 hover:scale-[1.02] transition-transform duration-300 shadow-xl shadow-primary/10"
+                      >
+                        Learn More <ArrowUpRight className="w-4 h-4" />
+                      </button>
+                    </Magnetic>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
@@ -425,6 +591,133 @@ function Counter({ value, prefix = "", suffix = "", decimals = 0 }: { value: num
   }, [inView, value, prefix, suffix, decimals]);
 
   return <span ref={ref} dangerouslySetInnerHTML={{ __html: `${prefix}0${suffix}` }} />;
+}
+
+function Packages({ isStandalone, onNavigate }: { isStandalone?: boolean, onNavigate?: (page: string) => void }) {
+  const packages = [
+    {
+      name: "Starter",
+      price: "₹12,000",
+      period: " / Month",
+      description: "Best for small businesses.",
+      features: [
+        "6 Professional Reels",
+        "6 Social Media Posts (4 Creative Posters & 2 Basic Posts)",
+        "Instagram & Facebook Management",
+        "WhatsApp Business Setup",
+        "Basic Content Strategy"
+      ],
+      buttonText: "Get Started",
+      popular: false
+    },
+    {
+      name: "Growth",
+      price: "₹22,000",
+      period: " / Month",
+      description: "Most Popular",
+      features: [
+        "12 Professional Reels",
+        "12 Social Media Posts (8 Premium Campaign Posters & 4 Carousels/Other)",
+        "Instagram & Facebook Management",
+        "WhatsApp Business Setup",
+        "Meta Ads Setup",
+        "4 Marketing Campaigns",
+        "Monthly Performance Report"
+      ],
+      buttonText: "Choose Growth",
+      popular: true
+    },
+    {
+      name: "Premium",
+      price: "₹33,000",
+      period: " / Month",
+      description: "For brands focused on maximum growth.",
+      features: [
+        "18 Premium Reels",
+        "15 Creative Posts (12 Premium Creative Posters & 3 Carousels)",
+        "4 A+ Design Posters",
+        "Instagram & Facebook Management",
+        "WhatsApp Business Setup",
+        "Meta Ads Setup",
+        "6 Marketing Campaigns",
+        "Influencer Collaboration Support",
+        "Priority Support"
+      ],
+      buttonText: "Contact Us",
+      popular: false
+    }
+  ];
+
+  return (
+    <section id="packages" className={cn("bg-background relative overflow-hidden", isStandalone ? "pt-32 pb-20 min-h-screen" : "py-32")}>
+      <SectionGrid />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        {isStandalone && onNavigate && (
+          <button onClick={() => onNavigate('home')} className="mb-12 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium">
+            <ChevronRight className="w-5 h-5 rotate-180" /> Back to Home
+          </button>
+        )}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <h2 className="text-4xl md:text-6xl font-heading font-medium tracking-tight mb-6">Packages</h2>
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Choose the plan that best fits your business goals.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+          {packages.map((pkg, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.25, delay: i * 0.1, ease: "easeOut" }}
+              className={cn(
+                "relative bg-white rounded-[24px] p-8 md:p-10 flex flex-col transition-all duration-200",
+                pkg.popular 
+                  ? "border border-primary/10 shadow-[0_8px_40px_rgba(17,17,17,0.06)] ring-1 ring-primary/5" 
+                  : "border border-primary/5 shadow-sm hover:shadow-md"
+              )}
+            >
+              {pkg.popular && (
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#111111] text-white text-xs font-medium px-4 py-1.5 rounded-full tracking-wide">
+                  Most Popular
+                </div>
+              )}
+              
+              <div className="mb-8">
+                <h3 className="text-2xl font-heading font-medium mb-4">{pkg.name}</h3>
+                <div className="flex items-baseline gap-1 mb-3">
+                  <span className="text-4xl font-heading font-medium tracking-tight">{pkg.price}</span>
+                  <span className="text-muted-foreground font-medium text-sm">{pkg.period}</span>
+                </div>
+                <p className={cn("text-sm", pkg.popular ? "text-primary/90 font-medium" : "text-muted-foreground")}>{pkg.description}</p>
+              </div>
+
+              <div className="flex-1">
+                <div className="text-sm font-medium mb-4 text-primary/60">Included:</div>
+                <ul className="space-y-4 mb-8">
+                  {pkg.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" strokeWidth={2.5} />
+                      <span className="text-sm text-primary/80 leading-snug">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <button 
+                onClick={() => onNavigate?.('lets-grow')}
+                className="w-full rounded-full bg-[#111111] text-white px-6 py-4 text-sm font-medium hover:bg-black/80 hover:shadow-md active:scale-[0.98] transition-all duration-200 ease-out"
+              >
+                {pkg.buttonText}
+              </button>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function Results({ onNavigate }: { onNavigate?: (page: string) => void }) {
@@ -519,31 +812,16 @@ function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-  loadReviews();
-}, []);
-
-const loadReviews = async () => {
-  const { data, error } = await supabase
-    .from('reviews')
-    .select('*')
-    .eq('approved', true)
-    .order('created_at', { ascending: false });
-
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  const dbReviews = data.map((item) => ({
-    name: item.name,
-    role: item.business_name,
-    text: item.review_text,
-    image: item.profile_image,
-    isCustom: true
-  }));
-
-  setReviews([...defaultTestimonials, ...dbReviews]);
-};
+    const saved = localStorage.getItem('elvera_reviews');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setReviews([...defaultTestimonials, ...parsed]);
+      } catch (e) {
+        console.error("Failed to load reviews:", e);
+      }
+    }
+  }, []);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -556,64 +834,54 @@ const loadReviews = async () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!clientName || !businessName || !reviewMessage || !profilePic) return;
     
     setIsSubmitting(true);
     
     const newReview = {
-  name: clientName,
-  role: businessName,
-  image: profilePic,
-  text: reviewMessage,
-  isCustom: true
-};
-
-const { error } = await supabase
-  .from('reviews')
-  .insert([
-    {
       name: clientName,
-      business_name: businessName,
-      review_text: reviewMessage,
-      profile_image: profilePic,
-      approved: false
-    }
-  ]);
+      role: businessName,
+      image: profilePic,
+      text: reviewMessage,
+      isCustom: true
+    };
 
-if (error) {
-  console.error(error);
-  alert('Failed to submit review');
-  setIsSubmitting(false);
-  return;
-}
+    setTimeout(() => {
+      const updated = [...reviews, newReview];
+      setReviews(updated);
+      
+      const saved = localStorage.getItem('elvera_reviews');
+      let parsedSaved = [];
+      if (saved) {
+        try { parsedSaved = JSON.parse(saved); } catch (e) {}
+      }
+      parsedSaved.push(newReview);
+      localStorage.setItem('elvera_reviews', JSON.stringify(parsedSaved));
 
-setTimeout(() => {
-  setClientName('');
-  setBusinessName('');
-  setReviewMessage('');
-  setProfilePic(null);
+      const waMessage = `Hello Elvera Media,\n\nA new review has been submitted through your website.\n\nClient Name: ${clientName}\nBusiness Name: ${businessName}\n\nThank you.`;
+      const waUrl = `https://wa.me/919356601391?text=${encodeURIComponent(waMessage)}`;
+      window.open(waUrl, '_blank');
 
-  if (fileInputRef.current) {
-    fileInputRef.current.value = '';
-  }
-
-  setIsSubmitting(false);
-  setShowSuccess(true);
-
-  sectionRef.current?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center'
-  });
-
-  setTimeout(() => setShowSuccess(false), 4000);
-
-}, 800);
+      setClientName('');
+      setBusinessName('');
+      setReviewMessage('');
+      setProfilePic(null);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+      setIsSubmitting(false);
+      setShowSuccess(true);
+      
+      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      setTimeout(() => setShowSuccess(false), 4000);
+    }, 800);
   };
+
   return (
     <section ref={sectionRef} className="py-32 bg-background overflow-hidden relative">
-      <div className="text-center mb-20 px-6">
+      <SectionGrid />
+      <div className="text-center mb-20 px-6 relative z-10">
         <h2 className="text-4xl md:text-6xl font-heading font-medium tracking-tight mb-6">Client Voices</h2>
       </div>
 
@@ -861,76 +1129,18 @@ function About({ isStandalone, onNavigate }: { isStandalone?: boolean, onNavigat
   );
 }
 
-const WA_NUMBER = "919356601391";
-
-function sendToWhatsApp(message: string) {
-  const encoded = encodeURIComponent(message);
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encoded}`, "_blank");
-}
-
-function WhatsAppFAB() {
-  return (
-    <motion.a
-      href={`https://wa.me/${WA_NUMBER}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 1.5, type: "spring", stiffness: 200, damping: 15 }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 right-6 z-[200] flex items-center gap-3 bg-[#25D366] text-white rounded-full shadow-[0_8px_30px_rgba(37,211,102,0.45)] px-5 py-3.5 group cursor-pointer"
-      aria-label="Chat on WhatsApp"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 flex-shrink-0">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      <span className="text-sm font-semibold whitespace-nowrap overflow-hidden max-w-0 group-hover:max-w-[120px] transition-all duration-300 ease-in-out">
-        Chat with us
-      </span>
-    </motion.a>
-  );
-}
-
 function Contact({ onNavigate, isStandalone }: { onNavigate: (page: string) => void, isStandalone?: boolean }) {
   const [services, setServices] = useState<string[]>([]);
   const [businessType, setBusinessType] = useState<string>("");
-  const nameRef = useRef<HTMLInputElement>(null);
-  const phoneRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const brandRef = useRef<HTMLInputElement>(null);
-  const detailsRef = useRef<HTMLTextAreaElement>(null);
+
   const toggleService = (s: string) => {
     setServices(prev => prev.includes(s) ? prev.filter(x => x !== s) : [...prev, s]);
   };
-  const handleSubmit = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const name = nameRef.current?.value || "";
-    const phone = phoneRef.current?.value || "";
-    const email = emailRef.current?.value || "";
-    const brand = brandRef.current?.value || "";
-    const details = detailsRef.current?.value || "";
 
-    const msg = `🚀 *New Lead — Elvera Media*
-
-👤 *Name:* ${name || "Not provided"}
-📞 *Phone:* ${phone || "Not provided"}
-📧 *Email:* ${email || "Not provided"}
-🏢 *Business:* ${brand || "Not provided"}
-🏷️ *Business Type:* ${businessType || "Not selected"}
-🛠️ *Services:* ${services.length ? services.join(", ") : "Not selected"}
-
-💬 *Details:*
-${details || "No additional details"}
-
-_Submitted via Elvera Media website_`;
-
-    sendToWhatsApp(msg);
-    onNavigate('thank-you');
-  };
   return (
-    <section id="contact" className={cn("bg-background relative z-20", isStandalone ? "pt-32 pb-20 min-h-screen" : "py-32")}>
-      <div className="container mx-auto px-6 md:px-12">
+    <section id="contact" className={cn("bg-background relative z-20 overflow-hidden", isStandalone ? "pt-32 pb-20 min-h-screen" : "py-32")}>
+      <SectionGrid />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         {isStandalone && (
           <button onClick={() => onNavigate('home')} className="mb-12 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium">
             <ChevronRight className="w-5 h-5 rotate-180" /> Back to Home
@@ -980,10 +1190,10 @@ _Submitted via Elvera Media website_`;
                 Your Details
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                <input ref={nameRef} type="text" placeholder="Full Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
-                <input ref={phoneRef} type="tel" placeholder="Phone Number" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
-                <input ref={emailRef} type="email" placeholder="Email Address" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
-                <input ref={brandRef} type="text" placeholder="Business / Brand Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
+                <input type="text" placeholder="Full Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+                <input type="tel" placeholder="Phone Number" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+                <input type="email" placeholder="Email Address" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
+                <input type="text" placeholder="Business / Brand Name" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all md:col-span-2" />
               </div>
             </motion.div>
 
@@ -1044,7 +1254,6 @@ _Submitted via Elvera Media website_`;
                 Project Details
               </h3>
               <textarea 
-                ref={detailsRef}
                 placeholder="Tell us about your business, goals, and how we can help you grow." 
                 rows={5} 
                 className="w-full bg-background border border-primary/5 rounded-[24px] px-6 py-5 text-base outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none"
@@ -1054,7 +1263,7 @@ _Submitted via Elvera Media website_`;
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.5, duration: 0.6 }}>
               <Magnetic>
                 <button 
-                  onClick={handleSubmit} 
+                  onClick={(e) => { e.preventDefault(); onNavigate('thank-you'); }} 
                   className="group w-full md:w-auto rounded-full bg-primary text-primary-foreground px-8 py-4 text-sm md:text-base font-medium flex items-center justify-center gap-3 hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-primary/10 mt-4"
                 >
                   Submit Form
@@ -1131,35 +1340,6 @@ function Footer({ onNavigate }: { onNavigate?: (page: string) => void }) {
 }
 
 function ProjectOnboarding({ onNavigate }: { onNavigate: (page: string) => void }) {
-  const firstNameRef = useRef<HTMLInputElement>(null);
-  const lastNameRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const budgetRef = useRef<HTMLSelectElement>(null);
-  const visionRef = useRef<HTMLTextAreaElement>(null);
-
-  const handleSubmit = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const firstName = firstNameRef.current?.value || "";
-    const lastName = lastNameRef.current?.value || "";
-    const email = emailRef.current?.value || "";
-    const budget = budgetRef.current?.value || "";
-    const vision = visionRef.current?.value || "";
-
-    const msg = `🚀 *New Project Request — Elvera Media*
-
-👤 *Name:* ${firstName} ${lastName}
-📧 *Email:* ${email || "Not provided"}
-💰 *Budget:* ${budget}
-
-🎯 *Project Vision:*
-${vision || "No details provided"}
-
-_Submitted via Elvera Media website_`;
-
-    sendToWhatsApp(msg);
-    onNavigate('thank-you');
-  };
-
   return (
     <div className="min-h-screen bg-background pt-32 pb-20 px-6 flex flex-col justify-center">
       <div className="container mx-auto max-w-4xl relative z-10">
@@ -1179,20 +1359,20 @@ _Submitted via Elvera Media website_`;
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium ml-2 text-primary/70">First Name</label>
-                <input ref={firstNameRef} type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+                <input type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium ml-2 text-primary/70">Last Name</label>
-                <input ref={lastNameRef} type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+                <input type="text" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Company Email</label>
-              <input ref={emailRef} type="email" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
+              <input type="email" className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all" />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Estimated Budget</label>
-              <select ref={budgetRef} className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all appearance-none cursor-pointer">
+              <select className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all appearance-none cursor-pointer">
                 <option>Less than ₹5 Lakhs</option>
                 <option>₹5L - ₹15L</option>
                 <option>₹15L - ₹50L</option>
@@ -1201,12 +1381,12 @@ _Submitted via Elvera Media website_`;
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium ml-2 text-primary/70">Project Vision</label>
-              <textarea ref={visionRef} rows={4} placeholder="Describe what success looks like for this project." className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none" />
+              <textarea rows={4} placeholder="Describe what success looks like for this project." className="w-full bg-background border border-primary/5 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:ring-2 focus:ring-primary/5 focus:border-primary/10 transition-all resize-none" />
             </div>
             
             <div className="pt-4">
               <Magnetic>
-                <button onClick={handleSubmit} className="group rounded-full bg-primary text-primary-foreground px-8 py-4 font-medium flex items-center gap-3 hover:scale-[1.02] transition-transform duration-300 w-fit shadow-xl shadow-primary/10">
+                <button onClick={(e) => { e.preventDefault(); onNavigate('thank-you'); }} className="group rounded-full bg-primary text-primary-foreground px-8 py-4 font-medium flex items-center gap-3 hover:scale-[1.02] transition-transform duration-300 w-fit shadow-xl shadow-primary/10">
                   Submit Request 
                   <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -1262,6 +1442,244 @@ function ThankYou({ onNavigate }: { onNavigate: (page: string) => void }) {
   );
 }
 
+function CreativePortfolio() {
+  const filters = ["All", "Education", "Hospitality", "Manufacturing", "Healthcare", "Web Design"];
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+
+  const projects = [
+    {
+      id: 1,
+      title: "School Admission Campaign",
+      industry: "Education",
+      category: "Education",
+      desc: "Instagram Campaign",
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop",
+      badge: "Top Campaign",
+      services: ["Branding", "Posters", "Meta Ads", "Social Media"],
+      challenge: "Needed to increase enrollment numbers during the peak admission season while establishing a premium educational brand identity.",
+      solution: "Developed a targeted Meta Ads campaign combined with engaging Instagram reels highlighting campus facilities and student success stories.",
+      outcome: "Generated over 500+ qualified admission leads with a 3x return on ad spend."
+    },
+    {
+      id: 2,
+      title: "Resort Promotion",
+      industry: "Hospitality",
+      category: "Hospitality",
+      desc: "Social Media & Ads",
+      image: "https://images.unsplash.com/photo-1582610116397-edb318620f90?q=80&w=800&auto=format&fit=crop",
+      badge: "Most Viewed",
+      services: ["Reels", "Meta Ads", "Social Media"],
+      challenge: "Low off-season bookings and weak social media presence.",
+      solution: "Created high-quality cinematic reels showcasing the resort experience, paired with targeted weekend getaway offers.",
+      outcome: "Increased weekend occupancy by 45% and gained 10k+ new Instagram followers."
+    },
+    {
+      id: 3,
+      title: "Wooden Door Manufacturer",
+      industry: "Manufacturing",
+      category: "Manufacturing",
+      desc: "B2B Lead Generation",
+      image: woodenDoorImg,
+      badge: "",
+      services: ["Meta Ads", "Posters"],
+      challenge: "Expanding B2B distributor network.",
+      solution: "Targeted lead generation campaigns focusing on quality and durability.",
+      outcome: "120+ new distributor inquiries in 2 months."
+    },
+    {
+      id: 4,
+      title: "Atta Chakki Branding",
+      industry: "Retail",
+      category: "Branding",
+      desc: "Brand Identity Design",
+      image: attaChakkiImg,
+      badge: "Recent Project",
+      services: ["Branding", "Posters"],
+      challenge: "Outdated brand identity losing market share to modern competitors.",
+      solution: "Complete visual rebranding and packaging redesign.",
+      outcome: "Successfully repositioned as a premium organic choice in local markets."
+    },
+    {
+      id: 10,
+      title: "Educational Institute",
+      industry: "Education",
+      category: "Education",
+      desc: "Brand Awareness",
+      image: educationalInstituteImg,
+      badge: "",
+      services: ["Branding", "Social Media"],
+      challenge: "Needed to communicate the institute's modern teaching methodologies.",
+      solution: "A cohesive content strategy featuring student life and faculty.",
+      outcome: "Enhanced brand perception and a 50% increase in social engagement."
+    }
+  ];
+
+  const filteredProjects = activeFilter === "All" ? projects : projects.filter(p => p.category === activeFilter);
+
+  return (
+    <section className="py-32 bg-white relative overflow-hidden">
+      <SectionGrid />
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-6xl font-heading font-medium tracking-tight mb-6">Featured Work</h2>
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            A selection of creative projects we've delivered for businesses across different industries.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {filters.map(f => (
+            <button
+              key={f}
+              onClick={() => setActiveFilter(f)}
+              className={cn(
+                "px-6 py-2.5 rounded-full border text-sm font-medium transition-all duration-250 ease-out",
+                activeFilter === f ? "bg-black text-white border-black shadow-md" : "bg-white text-black border-[#ECECEC] hover:border-black/30 hover:bg-neutral-50"
+              )}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+
+        <div className="columns-1 md:columns-2 lg:columns-4 gap-6 space-y-6">
+          <AnimatePresence>
+            {filteredProjects.map((p, i) => (
+              <motion.div
+                key={p.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5, delay: (i % 4) * 0.06 }}
+                onClick={() => setSelectedProject(p)}
+                className="group relative bg-white border border-[#ECECEC] rounded-[24px] overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-250 ease-out hover:-translate-y-[6px] break-inside-avoid"
+              >
+                <div className="aspect-[4/5] relative overflow-hidden bg-neutral-100">
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-250 ease-out group-hover:scale-[1.03]" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-250 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-250 ease-out bg-white text-black px-6 py-3 rounded-full font-medium text-sm shadow-lg flex items-center gap-2">
+                      View Project <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </div>
+                  {p.badge && (
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 text-xs font-medium rounded-full shadow-sm text-black">
+                      {p.badge}
+                    </div>
+                  )}
+                </div>
+                <div className="p-6">
+                  <div className="inline-block bg-neutral-100 text-neutral-600 px-3 py-1 rounded-md text-xs font-medium mb-3 group-hover:-translate-y-1 transition-transform duration-250 ease-out">
+                    {p.industry}
+                  </div>
+                  <h3 className="text-xl font-heading font-medium mb-1 tracking-tight text-neutral-900">{p.title}</h3>
+                  <p className="text-sm text-neutral-500 font-medium">{p.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-white/80 backdrop-blur-xl p-4 md:p-12 overflow-y-auto"
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              onClick={e => e.stopPropagation()}
+              className="bg-white rounded-[32px] md:rounded-[48px] w-full max-w-6xl shadow-[0_20px_80px_rgba(0,0,0,0.1)] border border-[#ECECEC] flex flex-col md:flex-row overflow-hidden max-h-[90vh]"
+            >
+              <div className="w-full md:w-1/2 h-[40vh] md:h-auto relative bg-neutral-100 shrink-0">
+                <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
+              </div>
+              <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col overflow-y-auto">
+                <button onClick={() => setSelectedProject(null)} className="absolute top-6 right-6 md:top-8 md:right-8 w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center hover:bg-neutral-200 transition-colors z-10">
+                  <X className="w-5 h-5 text-neutral-600" />
+                </button>
+                <div className="inline-block bg-neutral-100 text-neutral-600 px-3 py-1.5 rounded-md text-xs font-medium mb-4 w-fit">
+                  {selectedProject.industry}
+                </div>
+                <h2 className="text-3xl md:text-5xl font-heading font-medium tracking-tight mb-8 text-neutral-900">{selectedProject.title}</h2>
+                
+                <div className="mb-10">
+                  <h4 className="text-sm font-medium text-neutral-400 mb-4 uppercase tracking-wider">Services Used</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.services.map((s: string, idx: number) => (
+                      <span key={idx} className="bg-neutral-50 border border-[#ECECEC] px-4 py-2 rounded-full text-sm font-medium text-neutral-700">{s}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-8 flex-1">
+                  <div>
+                    <h4 className="text-lg font-medium mb-2 text-neutral-900">Challenge</h4>
+                    <p className="text-neutral-500 leading-relaxed">{selectedProject.challenge}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium mb-2 text-neutral-900">Solution</h4>
+                    <p className="text-neutral-500 leading-relaxed">{selectedProject.solution}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium mb-2 text-neutral-900">Outcome</h4>
+                    <p className="text-neutral-500 leading-relaxed font-medium">{selectedProject.outcome}</p>
+                  </div>
+                </div>
+
+                <div className="pt-10 mt-10 border-t border-[#ECECEC]">
+                  <button onClick={() => setSelectedProject(null)} className="w-full md:w-auto rounded-full bg-black text-white px-8 py-4 font-medium flex items-center justify-center gap-3 hover:bg-black/80 hover:scale-[0.98] transition-all duration-200">
+                    View More Projects
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
+
+function WhatsAppFloatingButton() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed bottom-6 right-6 z-[100] flex items-center justify-center"
+    >
+      <motion.a
+        href="https://wa.me/919356601391"
+        target="_blank"
+        rel="noopener noreferrer"
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 2, repeat: Infinity, repeatDelay: 6, ease: "easeInOut" }}
+        whileHover={{ scale: 1.08, y: -4 }}
+        whileTap={{ scale: 0.95 }}
+        className="group relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#25D366] text-white transition-shadow duration-300 shadow-[0_12px_30px_rgba(37,211,102,0.25)] before:content-[''] before:absolute before:inset-0 before:rounded-full before:backdrop-blur-md before:-z-10"
+      >
+        <div className="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity duration-250 ease-out bg-black/80 backdrop-blur-sm text-white text-xs py-2 px-4 rounded-full pointer-events-none whitespace-nowrap shadow-lg">
+          Chat with us
+        </div>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" className="relative z-10 w-7 h-7 md:w-8 md:h-8" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.883-.733-1.48-1.639-1.653-1.935-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+      </motion.a>
+    </motion.div>
+  );
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
@@ -1271,9 +1689,8 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground">
+    <div className="relative min-h-screen bg-[#FAF9F7] text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground">
       <CursorGlow />
-      <WhatsAppFAB />
       <Navbar onNavigate={navigateTo} />
       
       <AnimatePresence mode="wait">
@@ -1289,6 +1706,8 @@ export default function App() {
               <Hero onNavigate={navigateTo} />
               <FeaturedWork onNavigate={navigateTo} />
               <Services onNavigate={navigateTo} />
+              <Packages onNavigate={navigateTo} />
+              <CreativePortfolio />
               <Results onNavigate={navigateTo} />
               <Testimonials />
               <About onNavigate={navigateTo} />
@@ -1346,6 +1765,20 @@ export default function App() {
             className="bg-background min-h-screen"
           >
             <Services isStandalone onNavigate={navigateTo} />
+            <Footer onNavigate={navigateTo} />
+          </motion.div>
+        )}
+
+        {currentPage === 'packages' && (
+          <motion.div 
+            key="packages" 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            exit={{ opacity: 0 }} 
+            transition={{ duration: 0.5 }}
+            className="bg-background min-h-screen"
+          >
+            <Packages isStandalone onNavigate={navigateTo} />
             <Footer onNavigate={navigateTo} />
           </motion.div>
         )}
